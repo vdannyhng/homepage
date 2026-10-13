@@ -4,7 +4,7 @@ export const profile = {
 	name: 'Van Danny Hoang',
 	role: 'Team Lead & Project Lead Software Engineering',
 	company: 'Stadler Rail',
-	origin: '🇨🇭 / 🇻🇳',
+	origin: '🇨🇭 / 🇩🇪 / 🇻🇳',
 	location: 'Amriswil, Thurgau',
 	now: 'SDLC-Transformation bei Stadler',
 	// Wechselnde Wörter in der Headline
