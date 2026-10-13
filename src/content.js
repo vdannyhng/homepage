@@ -14,7 +14,7 @@ export const profile = {
 		'Ich verbinde technische Tiefe mit Freude an der Entwicklung von Menschen. Bei Stadler leite ich das Software-Engineering-Team für Diagnose- und Netzwerksysteme und verantworte die Einführung eines unternehmensweiten Software Development Lifecycle. Mein Ziel: ein Umfeld, in dem das Team wächst, Verantwortung übernimmt und technische Exzellenz erreicht.',
 	email: 'me@vandannyhoang.com',
 	linkedin: 'https://www.linkedin.com/in/vandannyhoang/',
-	github: 'https://github.com/vdannyhng-dev',
+	github: 'https://github.com/vdannyhng',
 };
 
 export const stats = [
