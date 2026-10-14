@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { profile, stats, focus, principles, journey, skills, personal } from './content.js';
 
+const prefersReducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Fades elements with the "reveal" class in once they scroll into view.
 function useReveal() {
 	useEffect(() => {
@@ -57,6 +59,10 @@ function CountUp({ to }) {
 		const observer = new IntersectionObserver(([entry]) => {
 			if (!entry.isIntersecting) return;
 			observer.disconnect();
+			if (prefersReducedMotion()) {
+				setValue(to);
+				return;
+			}
 			const start = performance.now();
 			const duration = 1200;
 			const tick = (now) => {
@@ -78,6 +84,7 @@ function RotatingWord({ words }) {
 	const [index, setIndex] = useState(0);
 
 	useEffect(() => {
+		if (prefersReducedMotion()) return;
 		const id = setInterval(() => setIndex((i) => (i + 1) % words.length), 2200);
 		return () => clearInterval(id);
 	}, [words.length]);
@@ -222,10 +229,11 @@ function App() {
 					</div>
 				</section>
 
-				<div className="marquee" aria-label="Skills">
+				{/* Decorative: the same skills are listed in the Skills section */}
+				<div className="marquee" aria-hidden="true">
 					<div className="marquee-track">
 						{[...tech, ...tech].map((t, i) => (
-							<span key={i} aria-hidden={i >= tech.length}>{t}</span>
+							<span key={i}>{t}</span>
 						))}
 					</div>
 				</div>
