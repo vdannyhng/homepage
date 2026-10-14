@@ -89,6 +89,37 @@ function RotatingWord({ words }) {
 	);
 }
 
+const navItems = [
+	['#projekte', 'Projekte'],
+	['#fuehrung', 'Führung'],
+	['#werdegang', 'Werdegang'],
+	['#skills', 'Skills'],
+	['#persoenlich', 'Persönlich'],
+];
+
+// On phones only the newest stations are shown until the visitor expands the list.
+const VISIBLE_STOPS = 3;
+
+// Mobile menu that closes on Escape, outside click or navigation.
+function useMenu() {
+	const [open, setOpen] = useState(false);
+	const ref = useRef(null);
+
+	useEffect(() => {
+		if (!open) return;
+		const onKey = (e) => e.key === 'Escape' && setOpen(false);
+		const onClick = (e) => !ref.current?.contains(e.target) && setOpen(false);
+		document.addEventListener('keydown', onKey);
+		document.addEventListener('pointerdown', onClick);
+		return () => {
+			document.removeEventListener('keydown', onKey);
+			document.removeEventListener('pointerdown', onClick);
+		};
+	}, [open]);
+
+	return { open, setOpen, ref };
+}
+
 // Moves the spotlight on cards to follow the cursor.
 function trackSpotlight(e) {
 	const card = e.target.closest('.spot');
@@ -103,23 +134,43 @@ function App() {
 	const toggleTheme = useTheme();
 	const initials = profile.name.split(' ').map((p) => p[0]).join('');
 	const tech = skills.flatMap((g) => g.items);
+	const menu = useMenu();
+	const [showAllStops, setShowAllStops] = useState(false);
+	const hiddenStops = journey.length - VISIBLE_STOPS;
 
 	return (
 		<div onPointerMove={trackSpotlight}>
 			<div className="progress" aria-hidden="true" />
 
-			<nav className="nav">
+			<nav className="nav" ref={menu.ref}>
 				<a href="#top" className="nav-logo">{initials}</a>
 				<div className="nav-links">
-					<a href="#projekte">Projekte</a>
-					<a href="#fuehrung">Führung</a>
-					<a href="#werdegang">Werdegang</a>
+					{navItems.slice(0, 3).map(([href, label]) => <a key={href} href={href}>{label}</a>)}
 				</div>
+				<button
+					className="menu-toggle"
+					onClick={() => menu.setOpen((o) => !o)}
+					aria-label="Menü"
+					aria-expanded={menu.open}
+					aria-controls="nav-menu"
+				>
+					<span className={`burger${menu.open ? ' open' : ''}`} aria-hidden="true"><span /><span /><span /></span>
+				</button>
 				<button className="theme-toggle" onClick={toggleTheme} aria-label="Hell/Dunkel umschalten">
 					<span className="icon-sun">☀︎</span>
 					<span className="icon-moon">☾</span>
 				</button>
 				<a href="#kontakt" className="nav-cta">Kontakt</a>
+				{menu.open && (
+					<div id="nav-menu" className="nav-menu">
+						{navItems.map(([href, label], i) => (
+							<a key={href} href={href} onClick={() => menu.setOpen(false)}>
+								<span className="nav-menu-num">0{i + 1}</span>
+								{label}
+							</a>
+						))}
+					</div>
+				)}
 			</nav>
 
 			<header id="top" className="hero">
@@ -214,9 +265,12 @@ function App() {
 				<section id="werdegang" className="container section">
 					<p className="section-kicker reveal">03 · Werdegang</p>
 					<h2 className="reveal">Meine Strecke</h2>
-					<ol className="timeline">
-						{journey.map((j) => (
-							<li key={j.title} className={`stop reveal${j.current ? ' current' : ''}`}>
+					<ol className={`timeline${showAllStops ? '' : ' collapsed'}`}>
+						{journey.map((j, i) => (
+							<li
+								key={j.title}
+								className={`stop reveal${j.current ? ' current' : ''}${i >= VISIBLE_STOPS ? ' stop-older' : ''}`}
+							>
 								<span className="stop-dot" />
 								<span className="stop-when">
 									{j.when}
@@ -228,6 +282,11 @@ function App() {
 							</li>
 						))}
 					</ol>
+					{hiddenStops > 0 && (
+						<button className="show-more" onClick={() => setShowAllStops((v) => !v)} aria-expanded={showAllStops}>
+							{showAllStops ? 'Weniger anzeigen ↑' : `Frühere Stationen anzeigen (${hiddenStops}) ↓`}
+						</button>
+					)}
 				</section>
 
 				<section id="skills" className="container section">
