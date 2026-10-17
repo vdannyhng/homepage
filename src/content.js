@@ -4,7 +4,7 @@ export const profile = {
 	name: 'Van Danny Hoang',
 	role: 'Team Lead & Project Lead Software Engineering',
 	company: 'Stadler Rail',
-	origin: '🇨🇭 / 🇩🇪 / 🇻🇳',
+	origin: 'Schweiz · Deutschland · Vietnam',
 	location: 'Amriswil, Thurgau',
 	now: 'SDLC-Transformation bei Stadler',
 	// Wechselnde Wörter in der Headline
@@ -23,22 +23,22 @@ export const stats = [
 	{ value: 3, suffix: '+', label: 'Jahre bei Stadler Rail' },
 ];
 
-// Projekte und Themen, die ich vorantreibe.
+// Projekte und Themen, die ich vorantreibe. icon = Name eines Lucide-Icons (lucide.dev), in App.jsx registriert.
 export const focus = [
 	{
-		icon: '🔄',
+		icon: 'Workflow',
 		title: 'SDLC-Blueprint',
 		text: 'Projektleitung für die Definition und unternehmensweite Etablierung eines SDLC-Blueprints. Die Grundlage für standardisierte, harmonisierte Entwicklungsprozesse mit Fokus auf Qualität, Security und Compliance.',
 		tags: ['Projektleitung', 'Prozesse', 'Standardisierung'],
 	},
 	{
-		icon: '🛡️',
+		icon: 'ShieldCheck',
 		title: 'Intrusion Detection System',
 		text: 'Projektleitung der IDS-Evaluation zur Überwachung industrieller Netzwerke: OT-Schnittstellen und Anomalieerkennung. Mit viel bereichsübergreifender Abstimmung für eine nachhaltige Entscheidung.',
 		tags: ['Cybersecurity', 'OT-Netzwerke', 'Evaluation'],
 	},
 	{
-		icon: '🚆',
+		icon: 'TrainFront',
 		title: 'Diagnose für Fahrzeugprojekte',
 		text: 'Diagnose-Verantwortung für über zehn Fahrzeugprojekte: von Konzeption und Architektur über Testplanung bis zur Abstimmung mit Kunden und Lieferanten. Dazu die Wissensdatenbank der Softwareabteilung.',
 		tags: ['Diagnose', 'Architektur', 'Systemintegration'],
@@ -47,22 +47,18 @@ export const focus = [
 
 export const principles = [
 	{
-		icon: '🧭',
 		title: 'Klare Strukturen',
 		text: 'Klare Strukturen, gezieltes Coaching und verlässlicher Wissenstransfer sind für mich die Basis für Motivation, Erfolg und Teamgeist.',
 	},
 	{
-		icon: '🤝',
 		title: 'Vertrauen & Offenheit',
 		text: 'Ich gestalte ein Umfeld, in dem das Team wachsen und Verantwortung übernehmen kann und Fehler gemeinsam gelöst werden.',
 	},
 	{
-		icon: '🎯',
 		title: 'Komplexes einfach machen',
 		text: 'Aus komplexen Themen klare Ziele, pragmatische Abläufe und nachvollziehbare Entscheidungen machen. Das habe ich bei SDLC und IDS gelernt.',
 	},
 	{
-		icon: '🛠️',
 		title: 'Technische Tiefe',
 		text: 'Als zertifizierter Softwarearchitekt kann ich technisch mitreden, unterstützen und Hindernisse aus dem Weg räumen.',
 	},
@@ -147,17 +143,17 @@ export const skills = [
 // Persönliches – abseits vom Job.
 export const personal = [
 	{
-		icon: '🗣️',
+		icon: 'Languages',
 		title: 'Sprachen',
 		items: ['Deutsch (Muttersprache)', 'Vietnamesisch (Muttersprache)', 'Englisch (fliessend)', 'Latein (Latinum)'],
 	},
 	{
-		icon: '🎾',
+		icon: 'Dumbbell',
 		title: 'Ausgleich',
 		items: ['Tennis', 'Squash', 'Basketball', 'Kraftsport', 'Klavier'],
 	},
 	{
-		icon: '🔧',
+		icon: 'Cpu',
 		title: 'Heimprojekte',
 		items: ['Pflanzenbewässerung (ESP32)', 'Smart Mirror (Raspberry Pi)', 'Reaktives Lichtsystem (Arduino)'],
 	},

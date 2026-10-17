@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Cpu, Dumbbell, Languages, Moon, ShieldCheck, Sun, TrainFront, Workflow } from 'lucide-react';
 import { profile, stats, focus, principles, journey, skills, personal } from './content.js';
 
 const prefersReducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -96,6 +97,14 @@ function RotatingWord({ words }) {
 	);
 }
 
+// Icons referenced by name from content.js
+const icons = { Cpu, Dumbbell, Languages, ShieldCheck, TrainFront, Workflow };
+
+function Icon({ name }) {
+	const Component = icons[name];
+	return Component ? <Component size={22} strokeWidth={1.75} aria-hidden="true" /> : null;
+}
+
 const navItems = [
 	['#projekte', 'Projekte'],
 	['#fuehrung', 'Führung'],
@@ -164,8 +173,8 @@ function App() {
 					<span className={`burger${menu.open ? ' open' : ''}`} aria-hidden="true"><span /><span /><span /></span>
 				</button>
 				<button className="theme-toggle" onClick={toggleTheme} aria-label="Hell/Dunkel umschalten">
-					<span className="icon-sun">☀︎</span>
-					<span className="icon-moon">☾</span>
+					<Sun className="icon-sun" size={18} strokeWidth={1.75} aria-hidden="true" />
+					<Moon className="icon-moon" size={18} strokeWidth={1.75} aria-hidden="true" />
 				</button>
 				<a href="#kontakt" className="nav-cta">Kontakt</a>
 				{menu.open && (
@@ -244,7 +253,7 @@ function App() {
 					<div className="grid-3">
 						{focus.map((f, i) => (
 							<article key={f.title} className="card spot reveal" style={{ transitionDelay: `${i * 80}ms` }}>
-								<div className="card-icon">{f.icon}</div>
+								<div className="card-icon"><Icon name={f.icon} /></div>
 								<h3>{f.title}</h3>
 								<p>{f.text}</p>
 								<ul className="tags">
@@ -262,7 +271,6 @@ function App() {
 						{principles.map((p, i) => (
 							<article key={p.title} className="card spot reveal" style={{ transitionDelay: `${i * 80}ms` }}>
 								<span className="card-num">0{i + 1}</span>
-								<div className="card-icon">{p.icon}</div>
 								<h3>{p.title}</h3>
 								<p>{p.text}</p>
 							</article>
@@ -318,7 +326,7 @@ function App() {
 					<div className="grid-3">
 						{personal.map((p) => (
 							<div key={p.title} className="card spot reveal">
-								<div className="card-icon">{p.icon}</div>
+								<div className="card-icon"><Icon name={p.icon} /></div>
 								<h3>{p.title}</h3>
 								<ul className="chips">
 									{p.items.map((item) => <li key={item}>{item}</li>)}
