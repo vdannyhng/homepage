@@ -1,0 +1,5 @@
+# Sicherheitslücke gefunden? Danke fürs Melden – bitte per E-Mail.
+Contact: mailto:me@vandannyhoang.com
+Expires: 2027-10-17T00:00:00.000Z
+Preferred-Languages: de, en
+Canonical: https://www.vandannyhoang.com/.well-known/security.txt
